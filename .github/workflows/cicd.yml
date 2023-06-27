@@ -44,7 +44,7 @@ jobs:
       - name: Build&Push to ghcr.io
         env:
           APP: "kbot"
-        run: make image push TARGETARCH=$TARGETARCH REGISTRY=ghcr.io/daria-hrebonkina
+        run: make image push TARGETARCH=$TARGETARCH REGISTRY=ghcr.io/${{ github.actor }}
         
       - name: Clean
         run: make clean TARGETARCH=$TARGETARCH
