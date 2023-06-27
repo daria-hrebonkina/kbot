@@ -4,7 +4,7 @@
 replicaCount: 1
 image:
   repository: "teslascat"
-  tag: "v1.0.4-585155d"
+  tag: "v1.0.4-72c8858"
   arch: amd64
 secret:
   name: "kbot"
