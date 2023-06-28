@@ -5,7 +5,7 @@ on:
     branches: ['develop']
 
 env:
-  TARGETARCH: amd64
+  TARGET_ARCH: amd64
   
 jobs:
   ci:
@@ -39,16 +39,16 @@ jobs:
         env:
           APP: "kbot"
           REGISTRY: ${{ secrets.DOCKERHUB_USERNAME }}
-        run: make image push TARGETARCH=$TARGETARCH
+        run: make image push TARGET_ARCH=$TARGET_ARCH
 
       - name: Build&Push to ghcr.io
         env:
           APP: "kbot"
           REGISTRY: ghcr.io/${{ github.actor }}
-        run: make image push TARGETARCH=$TARGETARCH
+        run: make image push TARGET_ARCH=$TARGET_ARCH
         
       - name: Clean
-        run: make clean TARGETARCH=$TARGETARCH
+        run: make clean TARGET_ARCH=$TARGET_ARCH
       
   cd:
     name: CD
@@ -63,7 +63,7 @@ jobs:
 
     - uses: mikefarah/yq@master
       with:
-        cmd: yq -i '.image.tag=strenv(VERSION) | .image.arch=strenv(TARGETARCH)' helm/values.yaml
+        cmd: yq -i '.image.tag=strenv(VERSION) | .image.arch=strenv(TARGET_ARCH)' helm/values.yaml
     - run: |
         git config user.name github-actions
         git config user.email github-actions@github.com
