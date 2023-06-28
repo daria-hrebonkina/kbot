@@ -25,14 +25,14 @@ pipeline {
 
         stage('build') {
             steps {
-                echo echo "Build for platform ${params.OS}, architecture ${params.ARCH}"
+                echo "Build for platform ${params.OS}, architecture ${params.ARCH}"
                 sh "make build TARGET_OS=${params.OS} TARGET_ARCH=${params.ARCH}"
             }
         }
 
         stage('image') {
             steps {
-                echo echo "Create an image of build"
+                echo "Create an image of build"
                 sh "make image TARGET_OS=${params.OS} TARGET_ARCH=${params.ARCH}"
             }
         }
